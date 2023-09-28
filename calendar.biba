@@ -1,0 +1,43 @@
+import datetime
+
+class DayokoPlanner:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task, date):
+        self.tasks.append((task, date))
+
+    def view_tasks(self):
+        if not self.tasks:
+            return "No tasks scheduled."
+        else:
+            task_list = "Scheduled tasks:\n"
+            for task, date in self.tasks:
+                task_list += f"- {task} (Date: {date})\n"
+            return task_list
+
+    def remove_task(self, task):
+        self.tasks = [(t, d) for t, d in self.tasks if t != task]
+
+    def clear_all_tasks(self):
+        self.tasks = []
+
+if __name__ == "__main__":
+    dayoko_planner = DayokoPlanner()
+
+    # Adding tasks to the planner
+    dayoko_planner.add_task("Meeting with client", datetime.date(2023, 9, 30))
+    dayoko_planner.add_task("Grocery shopping", datetime.date(2023, 10, 2))
+    dayoko_planner.add_task("Project deadline", datetime.date(2023, 10, 10))
+
+    # Viewing tasks
+    print(dayoko_planner.view_tasks())
+
+    # Removing a task
+    dayoko_planner.remove_task("Grocery shopping")
+
+    # Clearing all tasks
+    dayoko_planner.clear_all_tasks()
+
+    # Viewing tasks after removal and clearing
+    print(dayoko_planner.view_tasks())
